@@ -201,6 +201,14 @@ h2 {
 
 .program li { counter-increment: prog; }
 
+.program li.span {
+  grid-column: 1 / -1;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.program li.span p { max-width: var(--measure); }
+
 .program h3 {
   margin: 0 0 0.3rem;
   font-size: 1rem;
