@@ -4,85 +4,185 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All-Sky Lab — ground-based sky observation, Calgary</title>
-<meta name="description" content="Independent research on cloud, observing conditions, and night-sky brightness, using ground-based all-sky instrumentation in Calgary, Alberta.">
+<meta name="description" content="Independent research on cloud, observing conditions, and night-sky brightness, using public records and ground-based all-sky instrumentation in Calgary, Alberta.">
+<meta property="og:title" content="All-Sky Lab">
+<meta property="og:description" content="Independent research on cloud, observing conditions, and night-sky brightness. Calgary, Alberta.">
+<meta property="og:image" content="https://allskylab.ca/images/triptych.png">
+<meta property="og:url" content="https://allskylab.ca/">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="wrap">
+<body id="top">
+<div class="layout">
+
+<nav class="side" aria-label="Site">
+  <a class="brand" href="#top">All-Sky Lab</a>
+  <ul>
+    <li><a href="#research">Research interests</a></li>
+    <li><a href="#station">All-sky station</a></li>
+    <li><a href="#papers">Papers</a>
+      <ul class="sub">
+        <li><a href="#cloud-reports">Nighttime cloud reports</a></li>
+        <li><a href="#observing-nights">Usable observing nights</a></li>
+        <li><a href="#sky-brightening">Cycle-25 sky brightening</a></li>
+      </ul>
+    </li>
+    <li><a href="about.html">About me</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
 
   <header>
     <h1>All-Sky Lab</h1>
-    <p class="tagline">Ground-based observation of cloud, observing conditions, and the night sky.</p>
+    <p class="tagline">Measuring the night sky as an observing resource.</p>
     <p class="place">Calgary, Alberta</p>
 
     <p class="lede">
-      An independent research program measuring what the sky over Canada is actually
-      like. The lab runs continuous all-sky instrumentation and works with public surface,
-      satellite, and reanalysis records to study cloud, observing conditions, and the
-      brightness of the night.
+      Most of what we know about the night sky comes from records built for other
+      purposes: airport weather reports, satellite cloud products, volunteer photometer
+      networks. Each carries its own biases, from the observer, from calibration, and
+      from the sky itself changing. All-Sky Lab measures those biases and corrects for
+      them, so that public and networked data can say how much usable sky a place
+      actually has. Every paper ships with the code and data needed to rebuild its numbers.
+    </p>  </header>
+
+  <section id="research">
+    <h2>Research interests</h2>
+    <ol class="program">
+      <li>
+        <h3>Observer bias</h3>
+        <p>Human observers judge cloud by eye, and after dark they see less of it. How much
+        clearer do staffed stations report the night than it really is?</p>
+      </li>
+      <li>
+        <h3>Calibration bias</h3>
+        <p>Instruments and products change underneath a record: a satellite cloud algorithm
+        replaced mid-series, photometers whose zero points shift without notice. Finding
+        and correcting those steps before reading trends from them.</p>
+      </li>
+      <li>
+        <h3>Natural bias</h3>
+        <p>The sky itself varies. Airglow brightens with the solar cycle, and left unmodelled
+        that brightening reads as growth in light pollution.</p>
+      </li>
+      <li>
+        <h3>The observing resource</h3>
+        <p>Putting the records back together: how many nights a year are clear, dark,
+        transparent, and free of smoke, city by city, once the cloud reports are
+        corrected for their nighttime optimism.</p>
+      </li>
+    </ol>
+    <p class="program-note">
+      The <a href="#station">all-sky station</a> is an independent check on all of
+      these: a sky record made at night without a human observer, with its own
+      calibration documented from the start.
     </p>
-  </header>
+  </section>
 
-  <figure class="triptych">
-    <picture>
-      <source srcset="images/triptych.webp" type="image/webp">
-      <img src="images/triptych.png"
-           alt="One sky in three views: visible fisheye, thermal infrared, and the cloud mask derived from the pair.">
-    </picture>
-    <figcaption>
-      <span>Visible</span>
-      <span>Thermal infrared</span>
-      <span>Derived cloud mask</span>
-    </figcaption>
-  </figure>
+  <section id="station">
+    <h2>All-sky station</h2>
 
-  <section>
-    <h2>Research areas</h2>
+    <div class="live">
+      <a class="live-frame" href="https://allsky-map.com/api/cameras/a834e649f66f37e6/image">
+        <img id="live-sky" src="https://allsky-map.com/api/cameras/a834e649f66f37e6/image"
+             width="3552" height="3552" loading="lazy"
+             alt="Latest frame from the All-Sky Lab visible all-sky camera in Calgary.">
+      </a>
+      <div class="live-text">
+        <p class="live-label"><span class="dot" aria-hidden="true"></span>Live sky over Calgary</p>
+        <p>
+          The most recent frame uploaded by the station's visible all-sky camera.
+          Exposure adapts to the sky, from fractions of a second by day to long
+          exposures at night. Click for the full frame, with its capture time and
+          exposure.
+        </p>
+        <p class="live-meta" id="live-meta">New frames appear here automatically while this page is open.</p>
+      </div>
+    </div>
 
-    <div class="item">
-      <h3>Cloud observation and how it is measured</h3>
+    <div class="prose">
       <p>
-        Cloud amount is recorded by human observers, by ground instruments, and from
-        orbit, and the three do not always agree. The lab studies where those records
-        diverge, what causes it, and what that means for climatologies and long-term
-        trends built on top of them.
+        A low-cost station in Calgary pairs the visible fisheye camera with a thermal
+        infrared sensor and a surface weather station. The two cameras are co-registered,
+        so cloud can be mapped at night, when a visible camera alone sees little, and
+        checked against GOES satellite scenes over the site.
       </p>
     </div>
 
-    <div class="item">
-      <h3>Observing conditions and sky quality</h3>
-      <p>
-        Darkness, cloud, moonlight, aerosol and wildfire smoke, atmospheric transparency,
-        and seeing each limit what can be observed from the ground. Studied together
-        rather than one at a time, they describe how much usable sky a location really
-        offers over a year.
-      </p>
-    </div>
+    <figure class="triptych">
+      <picture>
+        <source srcset="images/triptych.webp" type="image/webp">
+        <img src="images/triptych.png"
+             alt="One sky in three views: visible fisheye, thermal infrared, and the cloud mask derived from the pair.">
+      </picture>
+      <figcaption>
+        <span>Visible</span>
+        <span>Thermal infrared</span>
+        <span>Derived cloud mask</span>
+      </figcaption>
+    </figure>
 
-    <div class="item">
-      <h3>Night-sky brightness and light pollution</h3>
+    <div class="prose">
       <p>
-        Skyglow is measured both from orbit and from the ground, and the two views
-        disagree in structured ways. Cloud complicates it further, reflecting artificial
-        light downward rather than screening it. Work here concerns how these
-        measurements relate and where each one misleads.
+        The weather station (GW7426) reports to the Citizen Weather Observer Program,
+        where its readings are quality-checked against the surrounding network.
+        <a href="https://aprs.fi/weather/a/GW7426">Live data</a> &middot;
+        <a href="https://weather.gladstonefamily.net/site/G7426">data-quality record</a>
+      </p>
+      <p>
+        Current work is on cloud classification from the paired frames and a
+        weatherproof dual-camera enclosure for unattended operation. The instrument
+        and its record will be documented and released in the same way as the papers.
       </p>
     </div>
+  </section>
 
-    <div class="item">
-      <h3>Low-cost instrumentation and open datasets</h3>
+  <section id="papers">
+    <h2>Papers</h2>
+
+    <article class="paper" id="cloud-reports">
+      <p class="tags">Observer bias &middot; Calibration bias</p>
+      <p class="status">Submitted &middot; <i>Journal of Atmospheric and Oceanic Technology</i></p>
+      <h3>Human cloud reports overstate nighttime clearing: a ceilometer, GOES, and VIIRS comparison at eight Canadian airports</h3>
       <p>
-        Building, characterising, and documenting affordable instruments for continuous
-        sky observation, and publishing the records they produce in forms other people
-        can actually use.
+        Staffed stations at all eight of Canada's busiest airports report 7–14 points
+        more clear sky at night than by day. A paired automated ceilometer and two
+        independent satellite cloud masks find almost no real nighttime clearing: the
+        excess comes from the observer, not the sky.
       </p>
-    </div>
+      <p class="links"><a href="https://doi.org/10.5281/zenodo.21698181">Code and data (Zenodo)</a></p>
+    </article>
+
+    <article class="paper" id="observing-nights">
+      <p class="tags">Observing resource</p>
+      <p class="status">Submitted &middot; <i>Journal of the Royal Astronomical Society of Canada</i></p>
+      <h3>Counting usable observing nights from public data: cloud, transparency, and smoke in eight Canadian cities, 2020–2025</h3>
+      <p>
+        How many nights a year have at least four hours of clear, dark sky, and how many
+        of those are also transparent and free of wildfire smoke. Corrected for the bias
+        above, the cities have 58–98 clear dark nights a year and 48–70 good ones;
+        Winnipeg and Calgary have the most.
+      </p>
+      <p class="links"><a href="https://doi.org/10.5281/zenodo.23404141">Code and data (Zenodo)</a></p>
+    </article>
+
+    <article class="paper" id="sky-brightening">
+      <p class="tags">Natural bias &middot; Calibration bias</p>
+      <p class="status">In preparation</p>
+      <h3>The cycle-25 brightening of the natural night sky across the STARS4ALL TESS-W network and its effect on light-pollution trends</h3>
+      <p>
+        Measured on clear, moonless nights at 83 photometer sites from solar minimum to
+        maximum, the natural sky brightens by about 0.14 mag as solar activity rises,
+        less than most published values. Left unmodelled, that brightening reads as
+        growth in light pollution.
+      </p>
+    </article>
   </section>
 
   <section>
     <h2>Contact</h2>
     <div class="contact">
-      <p><strong>Jerry Medeiros</strong> &mdash; independent researcher</p>
+      <p><strong>Jerry Fernandes Medeiros</strong> &mdash; independent researcher &middot; <a href="about.html">about me</a></p>
       <p><a href="mailto:jerry@allskylab.ca">jerry@allskylab.ca</a></p>
       <p><a href="https://orcid.org/0000-0001-5825-7675">ORCID 0000-0001-5825-7675</a></p>
     </div>
@@ -90,9 +190,13 @@
 
   <footer>
     All-Sky Lab &middot; Calgary, Alberta, Canada &middot;
-    <a href="https://aprs.fi/weather/a/GW7426">live weather</a>
+    <a href="https://aprs.fi/weather/a/GW7426">live weather</a> &middot;
+    <a href="https://weather.gladstonefamily.net/site/G7426">weather data quality</a>
   </footer>
 
+</main>
 </div>
+<script src="nav.js"></script>
+<script src="live.js"></script>
 </body>
 </html>

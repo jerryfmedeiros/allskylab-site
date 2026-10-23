@@ -31,7 +31,77 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.wrap { max-width: 46rem; margin: 0 auto; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 46rem);
+  column-gap: 3.5rem;
+  justify-content: center;
+}
+
+.wrap { min-width: 0; }
+
+[id] { scroll-margin-top: 2rem; }
+
+
+/* sidebar */
+
+.side {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 4.9rem 0 2rem;
+  font-size: 0.86rem;
+}
+
+.side .brand {
+  display: block;
+  margin-bottom: 1.4rem;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.side ul { margin: 0; padding: 0; list-style: none; }
+.side li { margin: 0 0 0.15rem; }
+
+.side li a { display: block; padding: 0.2rem 0; }
+.side a { color: var(--muted); border-bottom: 0; }
+.side a:hover,
+.side a.active,
+.side a[aria-current="page"] { color: var(--ink); }
+
+.side .sub {
+  margin: 0.2rem 0 0.5rem;
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--rule);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.side .sub li { margin-bottom: 0.1rem; }
+.side .sub a.active { color: var(--accent); }
+
+@media (max-width: 56rem) {
+  .layout { display: block; max-width: 46rem; margin: 0 auto; }
+
+  .side {
+    position: static;
+    max-height: none;
+    padding: 1.25rem 0 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .side .brand { display: inline; margin: 0 1.1rem 0 0; }
+  .side > ul, .side > ul > li { display: inline; }
+  .side > ul > li { margin: 0 0.9rem 0 0; }
+  .side li a { display: inline; padding: 0.4rem 0; }
+  .side .sub { display: none; }
+
+  header { padding-top: 2.5rem; }
+}
 
 a {
   color: var(--accent);
@@ -50,6 +120,7 @@ h1 {
   margin: 0;
   font-size: clamp(1.9rem, 5vw, 2.6rem);
   font-weight: 600;
+  line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
@@ -75,7 +146,7 @@ h1 {
 
 /* triptych */
 
-.triptych { margin: 3rem 0 0; }
+.triptych { margin: 0.5rem 0 0; }
 
 .triptych img {
   display: block;
@@ -115,25 +186,216 @@ h2 {
   color: var(--muted);
 }
 
-.item {
-  margin: 0 0 1.6rem;
-  max-width: var(--measure);
+
+/* research interests */
+
+.program {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: prog;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem 2.2rem;
 }
 
-.item:last-child { margin-bottom: 0; }
+.program li { counter-increment: prog; }
 
-.item h3 {
+.program h3 {
   margin: 0 0 0.3rem;
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.45;
 }
 
-.item p {
+.program h3::before {
+  content: counter(prog);
+  display: inline-block;
+  width: 1.4rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.program p {
   margin: 0;
+  padding-left: 1.4rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.program-note {
+  max-width: var(--measure);
+  margin: 1.8rem 0 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 40rem) {
+  .program { grid-template-columns: 1fr; }
+}
+
+
+/* papers */
+
+.paper {
+  margin: 0 0 2.2rem;
+  max-width: var(--measure);
+}
+
+.paper:last-child { margin-bottom: 0; }
+
+.paper .tags {
+  margin: 0 0 0.15rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.paper .status {
+  margin: 0 0 0.3rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.paper h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.paper p { margin: 0; }
+
+.paper p:not(.status):not(.links):not(.tags) {
   color: var(--muted);
   font-size: 0.95rem;
 }
+
+.paper .links {
+  margin-top: 0.45rem;
+  font-size: 0.88rem;
+}
+
+
+/* station */
+
+.live {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+  margin-bottom: 2.25rem;
+}
+
+.live-frame {
+  display: block;
+  border-bottom: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #000;
+}
+
+/* the sky disc fills ~83% of the camera frame and sits 4.2% left of centre;
+   crop in to it (re-measure if the camera is re-aimed) */
+.live-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scale(1.2) translate(4.2%, 0);
+}
+
+.live-text p { margin: 0 0 0.6rem; font-size: 0.95rem; color: var(--muted); }
+.live-text p:last-child { margin-bottom: 0; }
+
+.live-label {
+  color: var(--ink) !important;
+  font-weight: 600;
+}
+
+.live .dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: #3fb950;
+  vertical-align: 0.08em;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+.live.offline .dot { background: var(--muted); animation: none; }
+.live.offline .live-frame { display: none; }
+.live.offline { grid-template-columns: 1fr; }
+
+.live-meta { font-size: 0.82rem !important; }
+
+@keyframes pulse { 50% { opacity: 0.35; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .live .dot { animation: none; }
+}
+
+@media (max-width: 34rem) {
+  .live { grid-template-columns: 1fr; }
+  .live-frame { max-width: 20rem; margin: 0 auto; }
+}
+
+.triptych + .prose { margin-top: 2rem; }
+
+.prose { max-width: var(--measure); margin-bottom: 2rem; }
+.prose:last-child { margin-bottom: 0; }
+.prose p { margin: 0 0 0.9rem; font-size: 0.95rem; }
+.prose p:last-child { margin-bottom: 0; }
+
+
+/* about */
+
+.astro { margin: 2rem 0 2.25rem; }
+
+.astro img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.astro figcaption {
+  max-width: var(--measure);
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.astro + .about { margin-top: 0; }
+
+.about { margin-top: 2rem; }
+.about p { font-size: 1rem; }
+
+.pubs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--measure);
+}
+
+.pubs li {
+  margin: 0 0 0.8rem;
+  padding-left: 3rem;
+  text-indent: -3rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.pubs .yr {
+  display: inline-block;
+  width: 3rem;
+  text-indent: 0;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.more { margin: 1rem 0 0; font-size: 0.88rem; }
 
 
 /* contact */
